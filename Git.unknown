@@ -1,0 +1,109 @@
+Flow to create a GitHub Personal Access Token (PAT) with **no expiration**:
+
+
+..........**Step-by-Step: Creating a GitHub Token (No Expiration)**.......
+
+1. **Log in to GitHub**  
+   - Open your browser and go to [https://github.com](https://github.com).  
+   - Log in with your GitHub username and password.
+
+2. **Go to Developer Settings**  
+   - Click on your profile picture (top-right corner) and select **Settings** from the dropdown.  
+   - In the left sidebar, scroll down and click on **Developer settings**.
+
+3. **Access Personal Access Tokens (PAT)**  
+   - In **Developer settings**, click on **Personal Access Tokens** → **Tokens (classic)**.
+
+4. **Generate a New Token**  
+   - Click **Generate new token** (select **Classic**).
+
+5. **Set Token Options**  
+   - **Token Name**: Give your token a descriptive name (e.g. Token).  
+   - **Expiration**: Select **No expiration** from the drop-down menu.  
+     *(Note: Be careful when using tokens with no expiration, as they remain active until manually revoked.)*
+
+6. **Select Scopes (Permissions)**  
+   - Check the appropriate **scopes** based on what you need:  
+     - **repo** – Full control of private repositories (for pushing code).  
+     - **workflow** – Access to GitHub Actions.  
+
+7. **Generate the Token**  
+   - Scroll down and click **Generate Token**.  
+
+8. **Copy and Store the Token**  
+   - After the token is generated, **copy** it immediately!  
+     *(You will not be able to view it again after leaving the page.)*  
+   - You can save the token in a folder in your system 
+      example 
+      	shruthi@shruthi-VirtualBox:~$ mkdir pat
+	shruthi@shruthi-VirtualBox:~$ cd pat/
+	shruthi@shruthi-VirtualBox:~/pat$ gedit token
+
+
+9. **Using the Token in Git**  
+   - Use the token instead of your GitHub password when pushing code.  
+   Example:
+   
+   git remote set-url origin https://<token>@github.com/username/repository.git
+   
+   - Replace `<token>` with the actual token you generated.
+
+
+
+........Steps to Create a New Repository on GitHub
+1 Log in to GitHub
+
+	Go to https://github.com and log in.
+
+2 Go to the New Repository Page
+
+	Click the + icon (top-right) and select New repository.
+
+3 Set Repository Details
+
+	...Enter the Repository name (e.g., MyMavenApp).
+
+	...(Optional) Add a description.
+
+	...Choose Public or Private for repository visibility.
+
+
+4 Create Repository
+
+	...Click the Create repository button at the bottom.
+5 copy the url of the repository
+
+
+
+....................Select the project which we want to push to GitHub.................
+in terminal
+
+shruthi@shruthi-VirtualBox:~$ cd MyMavenApp/
+....#Changes the current working directory to 'MyMavenApp', which is assumed to be your project folder.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git config --global user.name "shruthibgowda"
+....# Configures the global Git username to 'shruthibgowda', which will be associated with your Git commits.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git config --global user.email "shruthicse23@gmail.com"
+....# Configures the global Git email address to 'shruthicse23@gmail.com', which will be associated with your Git commits.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git init
+....# Initializes a new empty Git repository in the 'MyMavenApp' directory.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git add .
+....# Stages (adds) all files in the current directory to the Git staging area, preparing them for commit.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git commit -m "inital commit"
+....# Commits the staged files with a message "initial commit". This records a snapshot of the current project state.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git remote add origin https://github.com/ShruthiBGowda/MyMavenApp.git
+....# Adds a remote repository URL (on GitHub) and names it 'origin'. This is where the local project will be pushed.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git remote set-url origin https://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@github.com/shruthibgowda/MyMAvenApp.git
+....# Updates the remote repository URL with the GitHub personal access token (PAT) for authentication.
+....# This is necessary when using token-based authentication instead of a username and password.
+
+shruthi@shruthi-VirtualBox:~/MyMavenApp$ git push -u origin master
+....# Pushes the local 'master' branch to the 'origin' remote repository on GitHub.
+....# The '-u' option sets the remote branch 'master' as the upstream branch, so future 'git push' commands can be run without specifying the remote or branch.
+
