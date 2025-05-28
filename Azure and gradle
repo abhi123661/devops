@@ -1,0 +1,51 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: Default
+
+steps:
+- script: echo Myfirst Azure Pipeline for maven project
+  displayName: 'Run a one-line script'
+- script: mvn clean install
+  displayName: 'Build with maven'
+- script: java -jar target/SimpleMavenApp-1.0-SNAPSHOT.jar
+  displayName: 'Running jar'
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+trigger:
+- master
+
+pool:
+  name: Default
+
+steps:
+- script: echo My Gradle Application
+  displayName: 'Run a one-line script'
+- script: gradle build
+  displayName: 'Building the gradle application'
+- script: gradle run
+  displayName: 'Running gradle application'
+
+--------------------------------------------------------------------------------------------------------------
+
+mkdir
+cd
+gradle init --type java-application
+gedit build.gradle
+
+task display{
+doLast{
+println"6A devops class"
+}
+}
+gradle build
+gradle run
+gradle display
