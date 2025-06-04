@@ -45,6 +45,24 @@ task display{
 doLast{
 println"6A devops class"
 }
+
+--------------------------------------------------------------------------------------------------------------
+
+---
+- name: Deploy to Tomcat
+  hosts: web
+  become: yes
+  tasks:
+    - name: Copy WAR file to Tomcat
+      copy:
+        src: "/var/snap/jenkins/4870/workspace/EXAN2-CICD/target/ExAnsible.war"
+        dest: "/opt/tomcat/webapps/ExAnsible.war"
+        remote_src: no
+
+    - name: Restart Tomcat manually
+      shell: "/opt/tomcat/bin/shutdown.sh && /opt/tomcat/bin/startup.sh"
+      args:
+        executable: /bin/bash
 }
 gradle build
 gradle run
